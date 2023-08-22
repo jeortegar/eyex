@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import styled from "styled-components";
+import Link from 'next/link';
+import styled from 'styled-components';
 //@ts-ignore
-import FeatherIcon from "feather-icons-react";
+import FeatherIcon from 'feather-icons-react';
 
 const Wrapper = styled.div`
   padding: 50px 20px;
@@ -38,12 +38,12 @@ const Item = styled.li`
 const Index = () => {
   const navegation: any = [
     {
-      icon: "home",
-      label: "home",
+      icon: 'home',
+      label: 'home',
     },
     {
-      icon: "file",
-      label: "files",
+      icon: 'file',
+      label: 'files',
     },
   ];
 
@@ -52,7 +52,7 @@ const Index = () => {
       <ItemsList>
         {navegation.map((item: any) => (
           <Item>
-            <Link href={`/${item.label}`}>
+            <Link href={`/dashboard/${item.label}`}>
               <FeatherIcon icon={item.icon} />
               <p>{item.label}</p>
             </Link>

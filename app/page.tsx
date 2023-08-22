@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useUserStore } from "./store";
+import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
+import { useUserStore } from './store';
 
 export default function Home() {
   const router = useRouter();
@@ -12,7 +12,7 @@ export default function Home() {
 
   useEffect(() => {
     if (!Object.keys(user).length) {
-      router.push("/create-account");
+      router.push('/create-account');
     }
   }, []);
 

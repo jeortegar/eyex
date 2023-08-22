@@ -1,27 +1,8 @@
-// import { createTheme } from "@mui/material/styles";
-import { COLORS } from "@/constants/colors";
+import type { ThemeOptions } from '@mui/material';
+import { createTheme } from '@mui/material/styles';
+import { COLORS } from '@/constants/colors';
 
-// export const theme = createTheme({
-//   palette: {
-//     primary: {
-//       main: COLORS.MAIN_PRIMARY,
-//       light: COLORS.LIGHT_PRIMARY,
-//       dark: COLORS.DARK_PRIMARY,
-//       contrastText: COLORS.CONTRAST_TEXT,
-//     },
-//     secondary: {
-//       main: COLORS.MAIN_SECONDARY,
-//       light: COLORS.LIGHT_SECONDARY,
-//       dark: COLORS.DARK_SECONDARY,
-//       contrastText: COLORS.CONTRAST_TEXT,
-//     },
-//   },
-// });
-
-import type { ThemeOptions } from "@mui/material";
-import { createTheme } from "@mui/material/styles";
-
-declare module "@mui/material/styles" {
+declare module '@mui/material/styles' {
   interface Theme {
     status: {
       danger: string;
@@ -58,6 +39,32 @@ declare module "@mui/material/styles" {
 // @ts-ignore
 export const themeOptions: ThemeOptions = {
   altBackground: false,
+  components: {
+    MuiButton: {
+      variants: [
+        {
+          props: { color: 'primary', variant: 'contained' },
+          style: {
+            height: '53px',
+            backgroundColor: COLORS.DARK,
+            color: COLORS.WHITE,
+            letterSpacing: '2.5px',
+            fontFamily: 'Prompt',
+          },
+        },
+        {
+          props: { color: 'primary', variant: 'text' },
+          style: {
+            height: '53px',
+            backgroundColor: COLORS.WHITE,
+            color: COLORS.DARK,
+            letterSpacing: '2.5px',
+            fontFamily: 'Prompt',
+          },
+        },
+      ],
+    },
+  },
   breakpoints: {
     values: {
       xs: 0,

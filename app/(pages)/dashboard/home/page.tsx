@@ -1,14 +1,15 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import styled from "styled-components";
-import Button from "@mui/material/Button";
-import UploadFileTab from "./UploadFileTab";
-import { useForm } from "react-hook-form";
-import UploadFile from "./components/uploadFile";
-import PatientForm from "./components/patientForm";
-import Success from "./components/success";
-import { HOME_TABS } from "@/constants/tabs";
+import { useState } from 'react';
+import styled from 'styled-components';
+import Button from '@mui/material/Button';
+import UploadFileTab from './UploadFileTab';
+import { useForm } from 'react-hook-form';
+import UploadFile from './components/uploadFile';
+import PatientForm from './components/patientForm';
+import Success from './components/success';
+import { HOME_TABS } from '@/constants/tabs';
+import { NoSsr } from '@mui/material';
 
 const Wrapper = styled.div`
   padding: 30px;
@@ -41,20 +42,8 @@ const ButtonBack = styled(Button)`
   color: grey;
   height: 53px;
   letter-spacing: 2.5px;
-  font-family: "Prompt";
+  font-family: 'Prompt';
   font-weight: 400;
-`;
-
-const ButtonBlack = styled(Button)`
-  background-color: #000;
-  color: #fff;
-  height: 53px;
-  letter-spacing: 2.5px;
-  font-family: "Prompt";
-  font-weight: 400;
-  &:hover {
-    background-color: #000;
-  }
 `;
 
 const Description = styled.p`
@@ -103,18 +92,24 @@ const Index = () => {
             )}
             {tab === HOME_TABS.SUCCESS && <Success />}
             {tab !== HOME_TABS.SUCCESS && (
-              <Actions>
-                <ButtonBack
-                  fullWidth={true}
-                  onClick={() => setTab(tab - 1)}
-                  disabled={tab === HOME_TABS.UPLOAD ?? true}
-                >
-                  back
-                </ButtonBack>
-                <ButtonBlack fullWidth={true} onClick={() => setTab(tab + 1)}>
-                  {tab === HOME_TABS.INFO ? "interpret" : "continue"}
-                </ButtonBlack>
-              </Actions>
+              <NoSsr>
+                <Actions>
+                  <ButtonBack
+                    fullWidth={true}
+                    onClick={() => setTab(tab - 1)}
+                    disabled={tab === HOME_TABS.UPLOAD ?? true}
+                  >
+                    back
+                  </ButtonBack>
+                  <Button
+                    fullWidth={true}
+                    onClick={() => setTab(tab + 1)}
+                    variant="contained"
+                  >
+                    {tab === HOME_TABS.INFO ? 'interpret' : 'continue'}
+                  </Button>
+                </Actions>
+              </NoSsr>
             )}
           </UploadFileTab>
         </div>

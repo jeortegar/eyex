@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import { useForm } from "react-hook-form";
-import styled from "styled-components";
-import { Field } from "@/styles/global";
-import Input from "../components/ui/form/Input";
-import LoadingButton from "@mui/lab/LoadingButton";
-import Image from "next/image";
-import IconArrow from "@/assets/icons/arrow-left.svg";
-import { useUserStore } from "@/store";
-import NoSsr from "@/services/utils/NoSsr";
+import { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import Link from 'next/link';
+import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
+import { Field } from '@/styles/global';
+import Input from '../../components/ui/form/Input';
+import LoadingButton from '@mui/lab/LoadingButton';
+import Image from 'next/image';
+import IconArrow from '@/assets/icons/arrow-left.svg';
+import { useUserStore } from '@/store';
+import NoSsr from '@/services/utils/NoSsr';
 
 const Wrapper = styled.div`
   padding: 40px 64px;
@@ -27,15 +27,6 @@ const Title = styled.h1`
 
 const ContentForm = styled.div`
   margin-top: 35px;
-`;
-
-const ButtonBlack = styled(LoadingButton)`
-  height: 53px;
-  font-family: "Prompt";
-  font-weight: 400;
-  &:hover {
-    background-color: #000;
-  }
 `;
 
 const Index = () => {
@@ -56,11 +47,11 @@ const Index = () => {
     setLoading(true);
     setUserInfo({
       ...dataForm,
-      user_uid: "293u902n390n",
-      name: "Jared Ortega",
+      user_uid: '293u902n390n',
+      name: 'Jared Ortega',
     });
-    router.push("/home");
-    localStorage.setItem("user_uid", "987bob0328949b2398b42");
+    router.push('/dashboard/home');
+    localStorage.setItem('user_uid', '987bob0328949b2398b42');
   };
 
   return (
@@ -96,14 +87,14 @@ const Index = () => {
             />
           </Field>
           <NoSsr>
-            <ButtonBlack
+            <LoadingButton
               type="submit"
               loading={loading}
               variant="contained"
               fullWidth={true}
             >
-              <span> sign up</span>
-            </ButtonBlack>
+              <span>log in</span>
+            </LoadingButton>
           </NoSsr>
         </form>
       </ContentForm>
