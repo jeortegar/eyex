@@ -1,0 +1,35 @@
+{
+  "name": "eyex-vision",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/lab": "^5.0.0-alpha.140",
+    "@mui/material": "^5.14.2",
+    "@types/node": "20.4.5",
+    "@types/react": "18.2.18",
+    "@types/react-dom": "18.2.7",
+    "@types/styled-components": "^5.1.26",
+    "babel-plugin-styled-components": "^2.1.4",
+    "eslint": "8.46.0",
+    "eslint-config-next": "13.4.12",
+    "eslint-plugin-better-styled-components": "^1.1.2",
+    "eslint-plugin-styled-components": "^0.0.0",
+    "feather-icons-react": "^0.6.2",
+    "next": "13.4.12",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-dropzone": "^14.2.3",
+    "react-hook-form": "^7.45.2",
+    "styled-components": "^6.0.5",
+    "typescript": "5.1.6",
+    "zustand": "^4.4.0"
+  }
+}
