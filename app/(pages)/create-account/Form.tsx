@@ -1,16 +1,15 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import { Controller, useForm } from 'react-hook-form';
-import styled from 'styled-components';
-import { Field } from '../../styles/global';
-import Box from '@mui/material/Box';
-import Input from '../../components/ui/form/Input';
-import LoadingButton from '@mui/lab/LoadingButton';
-import { Typography, FormControl, MenuItem, Select } from '@mui/material';
-import NoSsr from '@/services/utils/NoSsr';
+import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { Controller, useForm } from "react-hook-form";
+import styled from "styled-components";
+import { Field } from "../../styles/global";
+import Input from "../../components/ui/form/Input";
+import LoadingButton from "@mui/lab/LoadingButton";
+import { Box, Typography, FormControl, MenuItem, Select } from "@mui/material";
+import NoSsr from "@/services/utils/NoSsr";
 
 const Wrapper = styled.div`
   padding: 40px 64px;
@@ -45,8 +44,8 @@ const Index = () => {
 
   const onSubmit = (dataForm: any) => {
     setLoading(true);
-    console.log('dataForm', dataForm);
-    router.push('/onboarding');
+    console.log("dataForm", dataForm);
+    router.push("/onboarding");
   };
 
   return (
@@ -104,7 +103,7 @@ const Index = () => {
                       variant="outlined"
                       {...field}
                     >
-                      {['Doctor', 'Cirujano'].map((reason: any, k: any) => (
+                      {["Doctor", "Cirujano"].map((reason: any, k: any) => (
                         <MenuItem key={k} value={reason}>
                           {reason}
                         </MenuItem>
@@ -113,7 +112,7 @@ const Index = () => {
                     {errors.speciality && (
                       <Typography
                         variant="caption"
-                        sx={{ fontFamily: 'Prompt' }}
+                        sx={{ fontFamily: "Prompt" }}
                       >
                         * Este campo es requerido
                       </Typography>

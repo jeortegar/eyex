@@ -1,8 +1,8 @@
-import type { ThemeOptions } from '@mui/material';
-import { createTheme } from '@mui/material/styles';
-import { COLORS } from '@/constants/colors';
+import type { ThemeOptions } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { COLORS } from "@/constants/colors";
 
-declare module '@mui/material/styles' {
+declare module "@mui/material/styles" {
   interface Theme {
     status: {
       danger: string;
@@ -43,23 +43,34 @@ export const themeOptions: ThemeOptions = {
     MuiButton: {
       variants: [
         {
-          props: { color: 'primary', variant: 'contained' },
+          props: { color: "primary", variant: "contained" },
           style: {
-            height: '53px',
+            height: "53px",
             backgroundColor: COLORS.DARK,
             color: COLORS.WHITE,
-            letterSpacing: '2.5px',
-            fontFamily: 'Prompt',
+            letterSpacing: "2.5px",
+            fontFamily: "Prompt",
           },
         },
         {
-          props: { color: 'primary', variant: 'text' },
+          props: { color: "primary", variant: "text" },
           style: {
-            height: '53px',
+            height: "53px",
             backgroundColor: COLORS.WHITE,
             color: COLORS.DARK,
-            letterSpacing: '2.5px',
-            fontFamily: 'Prompt',
+            letterSpacing: "2.5px",
+            fontFamily: "Prompt",
+          },
+        },
+        {
+          props: { color: "primary", variant: "outlined" },
+          style: {
+            height: "53px",
+            // backgroundColor: COLORS.WHITE,
+            borderColor: "#dddddd",
+            color: COLORS.DARK,
+            letterSpacing: "2.5px",
+            fontFamily: "Prompt",
           },
         },
       ],

@@ -5,6 +5,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import Button from "@mui/material/Button";
 import Image from "next/image";
+import LoadingButton from "@mui/lab/LoadingButton";
 import IconArrow from "@/assets/icons/arrow-left.svg";
 import { ONBOARDING_TABS } from "@/constants/tabs";
 
@@ -47,9 +48,14 @@ const Footer = styled.div`
   margin: 0 45px;
 `;
 
-const ContentFooter = styled.div`
+interface ContentFooterProps {
+  initalLayout: boolean;
+}
+
+const ContentFooter = styled.div<ContentFooterProps>`
   display: grid;
-  grid-template-columns: 15% 82%;
+  grid-template-columns: ${({ initalLayout }) =>
+    initalLayout ? "87% 15%" : "15% 67% 15%"};
   grid-template-rows: 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 0px;
@@ -77,7 +83,8 @@ const ButtonBlack = styled(Button)`
 `;
 
 const Index = () => {
-  const [tab, setTab] = useState(1);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [tab, setTab] = useState<number>(1);
 
   return (
     <Wrapper>
@@ -121,13 +128,38 @@ const Index = () => {
           </>
         )}
         <Footer>
-          <ContentFooter>
-            <ButtonBack fullWidth={true} onClick={() => setTab(tab - 1)}>
-              <Image width={22} height={22} priority src={IconArrow} alt="<" />
-            </ButtonBack>
-            <ButtonBlack fullWidth={true} onClick={() => setTab(tab + 1)}>
-              continue
-            </ButtonBlack>
+          <ContentFooter
+            initalLayout={tab === ONBOARDING_TABS.CREATE_PROFILE ? true : false}
+          >
+            {tab !== ONBOARDING_TABS.CREATE_PROFILE && (
+              <Button
+                variant="outlined"
+                fullWidth={true}
+                onClick={() => setTab(tab - 1)}
+              >
+                <Image
+                  width={22}
+                  height={22}
+                  priority
+                  src={IconArrow}
+                  alt="<"
+                />
+              </Button>
+            )}
+            <LoadingButton
+              onClick={() => setTab(tab + 1)}
+              // type="submit"
+              loading={loading}
+              variant="contained"
+              fullWidth={true}
+            >
+              <span>continue</span>
+            </LoadingButton>
+            <Link href="/dashboard/home">
+              <Button variant="outlined" fullWidth={true}>
+                skip
+              </Button>
+            </Link>
           </ContentFooter>
         </Footer>
       </ContentTab>

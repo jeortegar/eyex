@@ -7,7 +7,8 @@ export const ONBOARDING_TABS = Object.freeze({
 });
 
 export const HOME_TABS = Object.freeze({
-  UPLOAD: 1,
-  INFO: 2,
-  SUCCESS: 3,
+  SPECIALITY: 1,
+  UPLOAD: 2,
+  INFO: 3,
+  SUCCESS: 4,
 });

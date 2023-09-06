@@ -1,26 +1,20 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import styled from 'styled-components';
-import Button from '@mui/material/Button';
-import UploadFileTab from './UploadFileTab';
-import { useForm } from 'react-hook-form';
-import UploadFile from './components/uploadFile';
-import PatientForm from './components/patientForm';
-import Success from './components/success';
-import { HOME_TABS } from '@/constants/tabs';
-import { NoSsr } from '@mui/material';
+import { useState } from "react";
+import styled from "styled-components";
+import Button from "@mui/material/Button";
+import Grid from "@mui/material/Grid";
+import UploadFileTab from "./UploadFileTab";
+import { useForm } from "react-hook-form";
+import Specialties from "./components/specialties";
+import UploadFile from "./components/uploadFile";
+import PatientForm from "./components/patientForm";
+import Success from "./components/success";
+import { HOME_TABS } from "@/constants/tabs";
+import { NoSsr } from "@mui/material";
 
 const Wrapper = styled.div`
   padding: 30px;
-`;
-
-const Content = styled.div`
-  display: grid;
-  grid-template-columns: 60% 40%;
-  grid-template-rows: 1fr;
-  grid-column-gap: 0px;
-  grid-row-gap: 0px;
 `;
 
 const Title = styled.h1`
@@ -42,14 +36,14 @@ const ButtonBack = styled(Button)`
   color: grey;
   height: 53px;
   letter-spacing: 2.5px;
-  font-family: 'Prompt';
+  font-family: "Prompt";
   font-weight: 400;
 `;
 
 const Description = styled.p`
   margin-top: 20px;
   font-size: 18px;
-  width: 66%;
+  width: 100%;
 `;
 
 const Actions = styled.div`
@@ -64,18 +58,19 @@ const Actions = styled.div`
 `;
 
 const Index = () => {
-  const [tab, setTab] = useState<number>(HOME_TABS.UPLOAD);
+  const [tab, setTab] = useState<number>(HOME_TABS.SPECIALITY);
 
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
 
   return (
     <Wrapper>
-      <Content>
-        <div>
+      <Grid container spacing={6}>
+        <Grid item xs={6}>
           <Title>
             Let's start <br /> Dr. Sara!
           </Title>
@@ -83,12 +78,17 @@ const Index = () => {
             Unlock the power of Artificial Intelligence and save your valuable
             time
           </Description>
-        </div>
-        <div>
+        </Grid>
+        <Grid item xs={6}>
           <UploadFileTab>
+            {tab === HOME_TABS.SPECIALITY && <Specialties setTab={setTab} />}
             {tab === HOME_TABS.UPLOAD && <UploadFile />}
             {tab === HOME_TABS.INFO && (
-              <PatientForm register={register} errors={errors} />
+              <PatientForm
+                register={register}
+                control={control}
+                errors={errors}
+              />
             )}
             {tab === HOME_TABS.SUCCESS && <Success />}
             {tab !== HOME_TABS.SUCCESS && (
@@ -97,7 +97,7 @@ const Index = () => {
                   <ButtonBack
                     fullWidth={true}
                     onClick={() => setTab(tab - 1)}
-                    disabled={tab === HOME_TABS.UPLOAD ?? true}
+                    disabled={tab === HOME_TABS.SPECIALITY ?? true}
                   >
                     back
                   </ButtonBack>
@@ -106,14 +106,14 @@ const Index = () => {
                     onClick={() => setTab(tab + 1)}
                     variant="contained"
                   >
-                    {tab === HOME_TABS.INFO ? 'interpret' : 'continue'}
+                    {tab === HOME_TABS.INFO ? "interpret" : "continue"}
                   </Button>
                 </Actions>
               </NoSsr>
             )}
           </UploadFileTab>
-        </div>
-      </Content>
+        </Grid>
+      </Grid>
     </Wrapper>
   );
 };

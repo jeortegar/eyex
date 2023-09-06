@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import Button from "@mui/material/Button";
+import { Box, Button } from "@mui/material";
 
-const Wrapper = styled.div`
+const Wrapper = styled(Box)`
   padding: 30px;
   display: flex;
   align-items: center;
@@ -32,7 +32,24 @@ const Index = () => {
     <Wrapper>
       <div>
         <Title>AI Interpretation</Title>
-        <ButtonBlue fullWidth={true}>download</ButtonBlue>
+        <Box mt={4} mb={2}>
+          <Button variant="contained" fullWidth={true}>
+            download
+          </Button>
+        </Box>
+        <Box mb={2}>
+          <Button variant="contained" fullWidth={true}>
+            create report
+          </Button>
+        </Box>
+        <Box mb={2}>
+          <Button variant="contained" fullWidth={true}>
+            send to the patient
+          </Button>
+        </Box>
+        <Button variant="contained" fullWidth={true}>
+          go to your pacs
+        </Button>
       </div>
     </Wrapper>
   );
