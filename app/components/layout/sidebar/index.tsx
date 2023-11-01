@@ -28,6 +28,16 @@ const Item = styled.li`
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
+  &:hover div {
+    background-color: #ffffff4a;
+  }
+  & div {
+    padding: 13px 0px;
+    border-radius: 10px;
+    width: 85px;
+    margin: auto;
+    transition: all 0.2s ease-out;
+  }
   & {
     a {
       color: #fff;
@@ -58,10 +68,12 @@ const Index = () => {
       <ItemsList>
         {navegation.map((item: any) => (
           <Item>
-            <Link href={`/dashboard/${item.label}`}>
-              <FeatherIcon icon={item.icon} />
-              <p>{item.label}</p>
-            </Link>
+            <Box>
+              <Link href={`/dashboard/${item.label}`}>
+                <FeatherIcon icon={item.icon} />
+                <p>{item.label}</p>
+              </Link>
+            </Box>
           </Item>
         ))}
       </ItemsList>
