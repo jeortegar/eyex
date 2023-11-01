@@ -1,9 +1,12 @@
-'use client';
+"use client";
 
-import Link from 'next/link';
-import styled from 'styled-components';
+import Link from "next/link";
+import styled from "styled-components";
+import { Box } from "@mui/material";
 //@ts-ignore
-import FeatherIcon from 'feather-icons-react';
+import FeatherIcon from "feather-icons-react";
+import Image from "next/image";
+import logoWhite from "@/assets/images/logo/logo-white.png";
 
 const Wrapper = styled.div`
   padding: 50px 20px;
@@ -38,17 +41,20 @@ const Item = styled.li`
 const Index = () => {
   const navegation: any = [
     {
-      icon: 'home',
-      label: 'home',
+      icon: "home",
+      label: "home",
     },
     {
-      icon: 'file',
-      label: 'files',
+      icon: "file",
+      label: "files",
     },
   ];
 
   return (
     <Wrapper>
+      <Box mb={5} display="flex" justifyContent="center">
+        <Image src={logoWhite} alt="logo-eyex" width={90} />
+      </Box>
       <ItemsList>
         {navegation.map((item: any) => (
           <Item>

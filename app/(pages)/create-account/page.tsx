@@ -1,7 +1,10 @@
 "use client";
 
 import styled from "styled-components";
+import { Box } from "@mui/material";
 import Form from "./Form";
+import Image from "next/image";
+import logoWhite from "@/assets/images/logo/logo-white.png";
 
 const Wrapper = styled.div`
   display: grid;
@@ -33,7 +36,12 @@ const Index = () => {
     <Wrapper>
       <div>
         <Banner>
-          <Title>Welcome to the future</Title>
+          <Box mb={1}>
+            <Image src={logoWhite} alt="logo-eyex" width={90} />
+          </Box>
+          <Title>
+            Welcome to the <br /> future
+          </Title>
         </Banner>
       </div>
       <div>
