@@ -1,10 +1,9 @@
 "use client";
 
-import { useSession } from "next-auth/react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSearchParams } from "next/navigation";
-import { Box, Typography } from "@mui/material";
+import { Box } from "@mui/material";
 import Speciality from "../../screens/speciality";
 import UploadElectocardiogram from "../../screens/upload-electrocardiogram";
 import PatientData from "../../screens/patient-data";
@@ -15,9 +14,7 @@ const Index = (props: any) => {
   const { activeStep, handleNext } = props;
 
   const searchParams = useSearchParams();
-  const company_selected: string | null = searchParams.get("company_selected");
   const action: any = searchParams.get("action");
-  const isEditable = Boolean(action !== null);
 
   const {
     handleSubmit,
