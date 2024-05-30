@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Controller, useForm } from "react-hook-form";
 import styled from "styled-components";
-import { Field } from "../../styles/global";
-import Input from "../../components/ui/form/Input";
+import { Field } from "@/styles/global";
+import Input from "@/components/ui/form/Input";
 import LoadingButton from "@mui/lab/LoadingButton";
+import { useUserStore } from "@/store";
 import { Box, Typography, FormControl, MenuItem, Select } from "@mui/material";
-import NoSsr from "@/services/utils/NoSsr";
+import { createAccount } from "@/services/api/auth";
+import { Toaster, toast } from "sonner";
 
 const Wrapper = styled.div`
   padding: 40px 64px;
@@ -33,26 +35,48 @@ const ContentForm = styled.div`
 const Index = () => {
   const router = useRouter();
 
+  // @ts-ignore
+  const setUserInfo = useUserStore((state) => state.setUserInfo);
+
   const {
     register,
     control,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { isValid, errors },
   } = useForm();
 
   const [loading, setLoading] = useState<boolean>(false);
 
   const onSubmit = (dataForm: any) => {
+    const { name, email, password, speciality } = dataForm;
     setLoading(true);
-    console.log("dataForm", dataForm);
-    router.push("/onboarding");
+    const info = {
+      name,
+      email,
+      password,
+      speciality,
+    };
+    createAccount(info)
+      .then((userInfo) => {
+        reset();
+        setLoading(false);
+        setUserInfo(userInfo);
+        toast.success("Bienvenido!");
+        router.push("/dashboard/home");
+      })
+      .catch((error) => {
+        console.log("error", error);
+        toast.error("Ocurrio un error en las credenciales");
+        setLoading(false);
+      });
   };
 
   return (
     <Wrapper>
-      <Title>Create new Account</Title>
+      <Title>Create Account</Title>
       <AlreadyRegistered>
-        Already Registered? <Link href="/login">Login</Link>
+        Already Registered? <Link href="/auth/login">Login</Link>
       </AlreadyRegistered>
       <ContentForm>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -122,18 +146,18 @@ const Index = () => {
               )}
             />
           </Field>
-          <NoSsr>
-            <LoadingButton
-              type="submit"
-              loading={loading}
-              variant="contained"
-              fullWidth={true}
-            >
-              <span> sign up</span>
-            </LoadingButton>
-          </NoSsr>
+          <LoadingButton
+            type="submit"
+            disabled={!isValid}
+            loading={loading}
+            variant="contained"
+            fullWidth={true}
+          >
+            Continue
+          </LoadingButton>
         </form>
       </ContentForm>
+      <Toaster />
     </Wrapper>
   );
 };

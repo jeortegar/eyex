@@ -5,7 +5,6 @@ const Content = styled.div`
   padding: 30px;
   background-color: #fff;
   border-radius: 20px;
-  height: calc(100vh - 208px);
 `;
 
 interface Children {

@@ -5,7 +5,7 @@ import { Box, Typography, Stack } from "@mui/material";
 import { COLORS } from "@/constants/colors";
 
 const Content = styled.div`
-  margin: 30px 0 40px;
+  margin: 20px 0 40px;
 `;
 
 const ContentDropzone = styled.div`
@@ -27,11 +27,24 @@ interface UploadFileProps {
   watch: any;
 }
 
-const Index = ({ setValue, watch }: UploadFileProps) => {
+interface Props {
+  control: any;
+  isValid: boolean;
+  errors: any;
+  setValue: any;
+  watch: any;
+  setError: any;
+  register: any;
+  setFileDrop: any;
+  getValues: (name: string) => any;
+  clearErrors: (a: any) => void;
+}
+
+const Index = ({ watch, setValue }: Props) => {
   const onDrop = useCallback((acceptedFiles: any) => {
     // Do something with the files
     acceptedFiles.forEach((file: File) => {
-      setValue("file_name", file.name);
+      setValue("file", file.name);
     });
   }, []);
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
@@ -40,7 +53,7 @@ const Index = ({ setValue, watch }: UploadFileProps) => {
     <Box>
       <h3>Upload your mammogram</h3>
       <Content>
-        <Box mt={1}>
+        <Box>
           <Typography>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
             Perspiciatis ipsa officiis cum in deleniti dolorum eius. Deserunt,
@@ -54,14 +67,14 @@ const Index = ({ setValue, watch }: UploadFileProps) => {
             <p>Drop the files here ...</p>
           ) : (
             <>
-              {watch("file_name") ? (
+              {watch("file") ? (
                 <Typography
                   color={COLORS.GREY}
                   variant="body2"
                   fontWeight="600"
                   ml={1}
                 >
-                  {watch("file_name")}
+                  {watch("file")}
                 </Typography>
               ) : (
                 <Stack direction="row" spacing={1} ml={2}>

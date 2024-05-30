@@ -6,7 +6,6 @@ const Wrapper = styled(Box)`
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 208px);
   text-align: center;
 `;
 

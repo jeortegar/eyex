@@ -12,7 +12,6 @@ import {
 import { Controller } from "react-hook-form";
 import Image from "next/image";
 import IconArrow from "@/assets/icons/arrow-left.svg";
-import { HOME_TABS } from "@/constants/tabs";
 import { COLORS } from "@/constants/colors";
 
 const Content = styled(Box)`
@@ -47,13 +46,20 @@ const Back = styled.button`
   }
 `;
 
-interface Specialities {
-  setTab: any;
+interface Props {
   control: any;
-  getValues: any;
+  isValid: boolean;
+  errors: any;
+  setValue: any;
+  watch: any;
+  setError: any;
+  register: any;
+  setFileDrop: any;
+  getValues: (name: string) => any;
+  clearErrors: (a: any) => void;
 }
 
-const Index = ({ setTab, control, getValues }: Specialities) => {
+const Index = ({ control, getValues }: Props) => {
   interface SpecialityProps {
     id: number;
     label: string;
@@ -114,7 +120,7 @@ const Index = ({ setTab, control, getValues }: Specialities) => {
   ];
 
   return (
-    <div>
+    <Box>
       <h3>Select your speciality</h3>
       <Content mt={2.5}>
         {Boolean(selectedSpecialty.length) && (
@@ -129,10 +135,7 @@ const Index = ({ setTab, control, getValues }: Specialities) => {
               <>
                 {selectedSpecialty.map((speciality: SpecialityProps) => (
                   <Grid item xs={6}>
-                    <Card
-                      role="button"
-                      onClick={() => setTab(HOME_TABS.UPLOAD)}
-                    >
+                    <Card role="button">
                       <Typography variant="body1" color={COLORS.DARK}>
                         {speciality.label}
                       </Typography>
@@ -203,23 +206,12 @@ const Index = ({ setTab, control, getValues }: Specialities) => {
                     </>
                   )}
                 />
-                {/* {specialitiesList.map((speciality: SpecialityProps) => (
-                  <Grid item xs={6}>
-                    <Card
-                      onClick={() => setSelectedSpecialty(speciality.options)}
-                    >
-                      <Typography variant="body1" color={COLORS.DARK}>
-                        {speciality.label}
-                      </Typography>
-                    </Card>
-                  </Grid>
-                ))} */}
               </>
             )}
           </>
         </Grid>
       </Content>
-    </div>
+    </Box>
   );
 };
 

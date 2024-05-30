@@ -1,6 +1,8 @@
 "use client";
 
+import { getAuth, signOut } from "firebase/auth";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import styled from "styled-components";
 import { Box } from "@mui/material";
 //@ts-ignore
@@ -28,6 +30,7 @@ const Item = styled.li`
   text-transform: uppercase;
   text-align: center;
   cursor: pointer;
+  color: #fff;
   &:hover div {
     background-color: #ffffff4a;
   }
@@ -49,16 +52,34 @@ const Item = styled.li`
 `;
 
 const Index = () => {
+  const router = useRouter();
+
   const navegation: any = [
     {
       icon: "home",
       label: "home",
     },
     {
-      icon: "file",
-      label: "files",
+      icon: "users",
+      label: "patients",
+    },
+    {
+      icon: "user",
+      label: "profile",
     },
   ];
+
+  // const auth = getAuth();
+  const signOutHanlder = () => {
+    // signOut(auth)
+    //   .then(() => {
+    //     // Sign-out successful.
+    //     router.push("/login");
+    //   })
+    //   .catch((error) => {
+    //     // An error happened.
+    //   });
+  };
 
   return (
     <Wrapper>
@@ -76,6 +97,12 @@ const Index = () => {
             </Box>
           </Item>
         ))}
+        <Item onClick={signOutHanlder}>
+          <Box>
+            <FeatherIcon icon="log-out" />
+            <p>log out</p>
+          </Box>
+        </Item>
       </ItemsList>
     </Wrapper>
   );

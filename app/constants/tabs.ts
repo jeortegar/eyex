@@ -12,3 +12,9 @@ export const HOME_TABS = Object.freeze({
   INFO: 3,
   SUCCESS: 4,
 });
+
+export const ELECTROCARDIOGRAM_ANALYSIS = Object.freeze({
+  SPECIALITY: "Speciality",
+  UPLOAD_FILE: "Upload your file",
+  PATIENT_DATA: "Patient information",
+});

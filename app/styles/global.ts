@@ -1,4 +1,4 @@
-import styled, { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from "styled-components";
 
 export default createGlobalStyle`
 
@@ -45,12 +45,11 @@ export default createGlobalStyle`
 `;
 
 export const Field = styled.div`
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   & label {
     display: block;
-    font-size: 13px;
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    font-size: 13.7px;
+    text-transform: capitalize;
     margin-bottom: 8px;
   }
 `;
